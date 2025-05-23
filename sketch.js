@@ -42,17 +42,21 @@ function drawLeftEye(points) {
 
 function drawLeftEyeInner(points) {
   stroke(0, 255, 0); // 綠色線條
-  strokeWeight(2);
+  strokeWeight(3);
   noFill();
   for (let i = 0; i < leftEyeInnerIndices.length - 1; i++) {
     const a = points[leftEyeInnerIndices[i]];
     const b = points[leftEyeInnerIndices[i + 1]];
-    line(a[0], a[1], b[0], b[1]);
+    if (a && b) {
+      line(a[0], a[1], b[0], b[1]);
+    }
   }
-  // 補上首尾連線
+  // 補上首尾連線，讓內框封閉
   const first = points[leftEyeInnerIndices[0]];
   const last = points[leftEyeInnerIndices[leftEyeInnerIndices.length - 1]];
-  line(last[0], last[1], first[0], first[1]);
+  if (first && last) {
+    line(last[0], last[1], first[0], first[1]);
+  }
 }
 
 function draw() {
