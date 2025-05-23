@@ -49,6 +49,10 @@ function drawLeftEyeInner(points) {
     const b = points[leftEyeInnerIndices[i + 1]];
     line(a[0], a[1], b[0], b[1]);
   }
+  // 補上首尾連線
+  const first = points[leftEyeInnerIndices[0]];
+  const last = points[leftEyeInnerIndices[leftEyeInnerIndices.length - 1]];
+  line(last[0], last[1], first[0], first[1]);
 }
 
 function draw() {
