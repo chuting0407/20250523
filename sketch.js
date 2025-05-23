@@ -7,6 +7,9 @@ const indices2 = [76,77,90,180,85,16,315,404,320,307,306,408,304,303,302,11,72,7
 // 左眼的點位編號
 const leftEyeIndices = [243,190,56,28,27,29,30,247,130,25,110,24,23,22,26,112];
 
+// 左眼內框的點位編號
+const leftEyeInnerIndices = [133,173,157,158,159,160,161,246,33,7,163,144,145,153,154,155];
+
 function setup() {
   createCanvas(640, 480).position(
     (windowWidth - 640) / 2,
@@ -33,6 +36,17 @@ function drawLeftEye(points) {
   for (let i = 0; i < leftEyeIndices.length - 1; i++) {
     const a = points[leftEyeIndices[i]];
     const b = points[leftEyeIndices[i + 1]];
+    line(a[0], a[1], b[0], b[1]);
+  }
+}
+
+function drawLeftEyeInner(points) {
+  stroke(0, 255, 0); // 綠色線條
+  strokeWeight(2);
+  noFill();
+  for (let i = 0; i < leftEyeInnerIndices.length - 1; i++) {
+    const a = points[leftEyeInnerIndices[i]];
+    const b = points[leftEyeInnerIndices[i + 1]];
     line(a[0], a[1], b[0], b[1]);
   }
 }
@@ -86,5 +100,6 @@ function draw() {
     endShape(CLOSE);
 
     drawLeftEye(keypoints);
+    drawLeftEyeInner(keypoints);
   }
 }
